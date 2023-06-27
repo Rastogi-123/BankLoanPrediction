@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Loan Prediction</title>
+	<link rel="stylesheet" href="basestyle.css">
+	<style>
+/* Define global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+  background-image: url('https://img.freepik.com/free-photo/business-debt-wages-got-usd_1150-1020.jpg?w=1800&t=st=1682728628~exp=1682729228~hmac=cd0edc8591faa24830fdbaf710407703d44d9c2ccacca6852103ea624d13b0eb');
+  background-size: cover;
+}
+
+/* Define header styles */
+header {
+  
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  color: #333;
+  text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
+  background-image: linear-gradient(to right, #000080,#191970);
+}
+
+header h1 {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+
+
+}
+
+/* Define button styles */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.btn-container a {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  border-style: ridge;
+  padding: 20px;
+  margin: 0 10px;
+  font-size: 24px;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: background-color 0.2s ease-in-out, transform .2s ease-out;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.btn-container a:before {
+  content: '';
+  background-color: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  top: 50%;
+  left: -50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 50%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  z-index: -1;
+}
+
+.btn-container a:hover:before {
+  opacity: 1;
+  left: 120%;
+}
+
+.btn-container a:hover {
+  background-color: #34A853;
+  transform: scale(1.1);
+}
+
+.btn-container:after {
+  content: '';
+  clear: both;
+  display: table;
+}
+
+/* Define footer styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  font-size: 14px;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .btn-container {
+    flex-direction: column;
+  }
+  a.predict-single, a.predict-multiple, a.get-all-records {
+    margin: 10px 0;
+  }
+}
+
+	</style>
+</head>
+<body>
+  <header>
+<h1>Loan Prediction</h1> 
+  </header>
+	<div class="btn-container">
+		<a href="/predictsinglerecord" class="predict-single">Predict Loan for Single Record </a>
+        <a href="/predictsmultiplerecord" class="predict-multiple">Predict Loan for Multiple Records</a>
+		<a href="/getallrecords" class="get-all-records">Get All Records</a>
+        </div>
+</body>
+</html>

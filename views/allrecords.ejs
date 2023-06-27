@@ -1,0 +1,254 @@
+<html>
+    <head>
+        <style>
+   html,
+body {
+  height: 100%;
+  
+}
+
+#plots {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  background-color: #f5f5f5;
+}
+h1 {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
+  background-image: linear-gradient(to right,lightgreen, green);
+
+}
+canvas {
+  width: 100%;
+  max-width: 500px;
+  max-height: 500px;
+  margin-bottom: 2em;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+#container{
+  width: auto;
+  color: #ccc;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+ 
+}
+
+label,
+input,
+button {
+  margin-bottom: 1em;
+  color: #555;
+}
+
+label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+input,
+button {
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  max-width: 360px;
+}
+#insights{
+  background-color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+input:focus {
+  outline: none;
+  border: 2px solid #007bff;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #0062cc;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 2em;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+th {
+  background-color: #1e2b39;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;  padding: 1em;
+}
+
+td {
+  font-size: 14px;
+  padding: 1em;
+}
+
+tr:hover {
+  background-color: #ebebeb;
+}
+
+tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+@media only screen and (max-width: 600px) {
+  td,
+  th {
+    padding: 0.5em;
+  }
+
+  td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  td {
+    display: block;
+    text-align: right;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td::before {
+    position: absolute;
+    left: 0;
+  }
+}
+
+          </style>
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+          
+    </head>
+    <body>
+      <h1>Visualizations(Count Plots and Pie-chart)</h1>
+      <div id="plots">
+      <canvas title="Count Plot On creditscore and Loan status"id="countplotcreditscore"></canvas>
+      <canvas title="Pie Chart on Loan Status(Paid Off/ Charged Off)"id="myPieChart"></canvas>
+      <canvas title="Count Plot on Home Ownership and Loan Status" id="countplotonhomeownership"></canvas>
+    </div>
+      <div id="container">
+      <form  id="search-form" action="/getcustomer" method="GET">
+       <label for="customer-id"> <b></b>Enter Customer ID: </b> </label> 
+        <input type="text" id="customer-id" name="id\"> 
+        <label for="customer-loan-status"> <b>Enter Loan Status: </b> </label> 
+        <input type="text" id="customer-loan-status" name="loanstatus">
+        <button type="submit" >Get Customer </button>
+      </form>
+    </div>
+        <table>
+    <tr>
+  <th>Customer ID</th>
+   <th> Loan Amount </th>
+   <th> Annual Income</th>
+   <th> Monthly Debt </th>
+   <th>Years of Credit History </th> 
+   <th> Number of Open Accounts</th>
+    <th> Current Credit Balance</th>
+    <th>  Maximum Open Credit </th>
+    <th> Years in current job </th>
+     <th> Home Ownership </th>
+     <th>  Purpose </th>
+    <th> Number of Credit Problems </th>
+    <th> Bankruptcies </th>
+    <th> Tax Liens </th>
+    <th> Credit Ranges </th>
+    <th>Predicted Loan Status </th>
+    <th>probability of  Loan being Paid Off </th>
+    <th>Get More Insights</th>
+            </tr>
+         
+            <% if(customers.length>=0) { %>
+              <% for (let i = 0; i < customers.length; i++) { %>
+                <tr id=<%= customers[i]._id %>>
+                  <td><%= customers[i]._id %> </td>
+                  <td><%= customers[i].amount %></td>
+                  <td><%= customers[i].income %></td>
+                  <td><%= customers[i].debt %></td>
+                  <td><%= customers[i].history %></td>
+                  <td><%= customers[i].accounts %></td>
+                  <td><%= customers[i].balance %></td>
+                  <td><%= customers[i].maxcredit %></td>
+                  <td><%= customers[i].job %></td>
+                  <td><%= customers[i].home %></td>
+                  <td><%= customers[i].purpose %></td>
+                  <td><%= customers[i].problems %></td>
+                  <td><%= customers[i].bankruptcies %></td>
+                  <td><%= customers[i].taxliens %></td>
+                  <td><%= customers[i].creditranges %></td>
+                  <td><%= customers[i].predictedloanstatus %></td>
+                  <td><%= customers[i].probability %></td>
+                  <form action="/getinsights" method="POST">
+                    <input type="hidden" name="bestie" value="<%= customers[i]._id %>">
+                  <td><button type="submit" id="insights">Get More Insights</button></td>
+                  </form>
+                </tr>
+              <% } %>
+              <% } else {  %>
+                <tr id=<%= customers._id %>>
+                  <td><%= customers._id %> </td>
+                  <td><%= customers.amount %></td>
+                  <td><%= customers.income %></td>
+                  <td><%= customers.debt %></td>
+                  <td><%= customers.history %></td>
+                  <td><%= customers.accounts %></td>
+                  <td><%= customers.balance %></td>
+                  <td><%= customers.maxcredit %></td>
+                  <td><%= customers.job %></td>
+                  <td><%= customers.home %></td>
+                  <td><%= customers.purpose %></td>
+                  <td><%= customers.problems %></td>
+                  <td><%= customers.bankruptcies %></td>
+                  <td><%= customers.taxliens %></td>
+                  <td><%= customers.creditranges %></td>
+                  <td><%= customers.predictedloanstatus %></td>
+                  <td><%= customers.probability %></td>
+                  <form action="/getinsights" method="POST">
+                    <input type="hidden" name="bestie" value="<%= customers._id %>">
+                  <td><button type="submit" id="insights">Get More Insights</button></td>
+                  </form>
+                </tr>
+  
+            <% } %>
+          </table>
+          <script>
+            const id = ('<%= id %>');
+          </script>
+          
+          
+          <script type="text/javascript" src="/script.js"></script>
+    </body>
+</html>
